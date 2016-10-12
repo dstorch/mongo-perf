@@ -229,7 +229,7 @@ tests.push( { name: "InsertIndexedStringsSimpleCollation",
                   collection.ensureIndex( { a: 1 } );
               },
               ops: [
-                  { op: "insert", doc: { a: "0123456789" } }
+                  { op: "insert", doc: { a: { "#RAND_STRING": [10] } } }
               ] } );
 
 /*
@@ -257,5 +257,5 @@ tests.push( { name: "InsertIndexedStringsNonSimpleCollation",
                   collection.ensureIndex( { a: 1 } );
               },
               ops: [
-                  { op: "insert", doc: { a: "0123456789" } }
+                  { op: "insert", doc: { a: { "#RAND_STRING": [10] } } }
               ] } );

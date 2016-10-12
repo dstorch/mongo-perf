@@ -180,7 +180,7 @@ tests.push( { name: "Queries.TwoInts",
  * Test: Query for a range of strings using the non-simple default collation.
  */
 tests.push( { name: "Queries.StringRangeWithNonSimpleCollation",
-              tags: ['query','core','indexed','collation'],
+              tags: ['query','indexed','collation'],
               pre: function( collection ) {
                   var testDB = collection.getDB();
                   var collName = collection.getName();
@@ -194,14 +194,15 @@ tests.push( { name: "Queries.StringRangeWithNonSimpleCollation",
                   testDB.createCollection(collName, { collation: myCollation } );
                   var docs = [];
                   for ( var i = 0; i < 4800; i++ ) {
-                      docs.push( { x : i.toString() } );
+                      var j = i + (1 * 1000 * 1000 * 1000);
+                      docs.push( { x : j.toString() } );
                   }
                   collection.insert(docs);
                   collection.getDB().getLastError();
                   collection.ensureIndex( { x : 1 } );
               },
               ops : [
-                  { op: "find", query: { x: { $gte: "2400", $lt: "2404" } } }
+                  { op: "find", query: { x: { $gte: "1000002400", $lt: "1000002404" } } }
               ] } );
 
 /*
@@ -214,7 +215,7 @@ tests.push( { name: "Queries.StringRangeWithNonSimpleCollation",
  * indexed.
  */
 tests.push( { name: "Queries.StringRangeWithSimpleCollation",
-              tags: ['query','core','indexed','collation'],
+              tags: ['query','indexed','collation'],
               pre: function( collection ) {
                   var testDB = collection.getDB();
                   var collName = collection.getName();
@@ -222,14 +223,15 @@ tests.push( { name: "Queries.StringRangeWithSimpleCollation",
                   testDB.createCollection(collName, { collation: { locale: "simple" } } );
                   var docs = [];
                   for ( var i = 0; i < 4800; i++ ) {
-                      docs.push( { x : i.toString() } );
+                      var j = i + (1 * 1000 * 1000 * 1000);
+                      docs.push( { x : j.toString() } );
                   }
                   collection.insert(docs);
                   collection.getDB().getLastError();
                   collection.ensureIndex( { x : 1 } );
               },
               ops : [
-                  { op: "find", query: { x: { $gte: "2400", $lt: "2404" } } }
+                  { op: "find", query: { x: { $gte: "1000002400", $lt: "1000002404" } } }
               ] } );
 
 /*
@@ -242,7 +244,7 @@ tests.push( { name: "Queries.StringRangeWithSimpleCollation",
  * according to the collation.
  */
 tests.push( { name: "Queries.StringUnindexedInPredWithNonSimpleCollation",
-              tags: ['query','core','collation'],
+              tags: ['query','regression','collation'],
               pre: function( collection ) {
                   var testDB = collection.getDB();
                   var collName = collection.getName();
@@ -281,7 +283,7 @@ tests.push( { name: "Queries.StringUnindexedInPredWithNonSimpleCollation",
  * are unindexed, in addition to the perf impact of an in-memory SORT stage which uses a collator.
  */
 tests.push( { name: "Queries.StringUnindexedInPredWithSimpleCollation",
-              tags: ['query','core','collation'],
+              tags: ['query','regression','collation'],
               pre: function( collection ) {
                   var testDB = collection.getDB();
                   var collName = collection.getName();
