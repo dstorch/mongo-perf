@@ -903,7 +903,3 @@ generateTestCase({
     ],
     addSkipStage: false,
 });
-
-//
-// Find operations expressed as aggregations.
-//
