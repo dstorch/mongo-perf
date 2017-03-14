@@ -113,7 +113,7 @@ function generateTestCase(options) {
     var tags = options.tags || [];
 
     var addSkipStage = options.addSkipStage;
-    if (options.addSkipStage === undefined) {
+    if (addSkipStage === undefined) {
         addSkipStage = true;
     }
 
