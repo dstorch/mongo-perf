@@ -827,6 +827,7 @@ generateTestCase({
 
 generateTestCase({
     name: "CountsFullCollection",
+    tags: ["agg_perf_comparison"],
     nDocs: 4800,
     docGenerator: function(i) {
         return {_id: i};
@@ -837,6 +838,7 @@ generateTestCase({
 
 generateTestCase({
     name: "CountsIntIDRange",
+    tags: ["agg_perf_comparison"],
     nDocs: 4800,
     docGenerator: function(i) {
         return {_id: i};
@@ -855,7 +857,7 @@ function distinctTestDocGenerator(i) {
 
 generateTestCase({
     name: "DistinctWithIndex",
-    tags: ["distinct"],
+    tags: ["distinct", "agg_perf_comparison"],
     nDocs: 14400,
     docGenerator: distinctTestDocGenerator,
     indices: [{x: 1}],
@@ -868,7 +870,7 @@ generateTestCase({
 
 generateTestCase({
     name: "DistinctWithIndexAndQuery",
-    tags: ["distinct"],
+    tags: ["distinct", "agg_perf_comparison"],
     nDocs: 14400,
     docGenerator: distinctTestDocGenerator,
     indices: [{x: 1}],
@@ -882,7 +884,7 @@ generateTestCase({
 
 generateTestCase({
     name: "DistinctWithoutIndex",
-    tags: ["distinct"],
+    tags: ["distinct", "agg_perf_comparison"],
     nDocs: 14400,
     docGenerator: distinctTestDocGenerator,
     pipeline: [
@@ -894,7 +896,7 @@ generateTestCase({
 
 generateTestCase({
     name: "DistinctWithoutIndexAndQuery",
-    tags: ["distinct"],
+    tags: ["distinct", "agg_perf_comparison"],
     nDocs: 14400,
     docGenerator: distinctTestDocGenerator,
     pipeline: [

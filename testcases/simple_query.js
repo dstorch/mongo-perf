@@ -155,7 +155,7 @@ function addTestCase(options) {
 
     // Generate a test which is the aggregation equivalent of this find operation.
     tests.push({
-        tags: ["aggregation", "find_as_agg"].concat(tags),
+        tags: ["agg_perf_comparison"].concat(tags),
         name: "Aggregation." + options.name,
         pre: collectionPopulator(
             !isView, options.nDocs, indexes, options.docs, options.collectionOptions),
