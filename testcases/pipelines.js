@@ -726,7 +726,8 @@ generateTestCase({
 generateTestCase({
     name: "Skip",
     nDocs: 500,
-    pipeline: [{$skip: 250}]
+    pipeline: [{$skip: 250}],
+    addSkipStage: false
 });
 
 generateTestCase({
